@@ -1,13 +1,10 @@
-package uk.ac.gla;
+package uk.ac.gla.main;
 
-/**
- * Hello world!
- *
- */
-public class App 
-{
-    public static void main( String[] args )
-    {
-        System.out.println( "Hello World!" );
+import uk.ac.gla.view.WelcomeView;
+
+
+public class Main {
+    public static void main(String[] args) {
+        new WelcomeView();
     }
 }
