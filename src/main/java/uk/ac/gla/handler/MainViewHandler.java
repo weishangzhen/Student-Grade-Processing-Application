@@ -1,6 +1,7 @@
 package uk.ac.gla.handler;
 
 import uk.ac.gla.view.MainView;
+import uk.ac.gla.view.SearchView;
 
 import javax.swing.*;
 import java.awt.*;
@@ -43,6 +44,7 @@ public class MainViewHandler extends Component implements ActionListener {
                 notCorrect();
             } else {
                 showDialog();
+                new SearchView();
             }
         } else if ("Reset".equals(jButtonTest)) {
             MainView.getText1().setText("");

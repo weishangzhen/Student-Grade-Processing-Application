@@ -16,7 +16,7 @@ import java.util.Date;
 
 public class WelcomeView extends JFrame {
     JLabel applicationName = new JLabel("Welcome to the system!", JLabel.CENTER);
-    JLabel right = new JLabel("© 2021  MR.XXX All rights reserved.", JLabel.CENTER);
+    JLabel right = new JLabel("© 2021 Shangzhen Wei All rights reserved.", JLabel.CENTER);
 
     SpringLayout springLayout = new SpringLayout();
     JPanel jPanel = new JPanel(springLayout);
