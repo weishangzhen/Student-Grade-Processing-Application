@@ -13,6 +13,10 @@ import java.util.Locale;
  * @version 1.0
  */
 
+/*
+ * CSV file reading page and software operating instructions page
+ */
+
 public class MainView extends JFrame {
     static JTextField text1 = new JTextField();
     static JFileChooser jFileChooser = new JFileChooser(new File("./gc_GA30003_SEM0000_2021_SMP.csv"));

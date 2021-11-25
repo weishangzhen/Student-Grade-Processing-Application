@@ -8,6 +8,11 @@ import java.awt.*;
  * @version 1.1
  */
 
+/*
+ * Get the display size of the user's computer screen
+ * The size of the rectangle returned is used as the size of the SearchView page
+ */
+
 public class ScreenDimensionUtil {
 
     public static Rectangle getBounds() {

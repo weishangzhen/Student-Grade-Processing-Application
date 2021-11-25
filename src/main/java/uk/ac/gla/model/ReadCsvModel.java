@@ -11,6 +11,11 @@ import java.util.List;
  * @author Shangzhen Wei
  * @version 1.1
  */
+
+/*
+ * Read the CSV file and store the student grade data in it in lists after splitting it.
+ */
+
 public class ReadCsvModel {
 
     public static List<List<String>> readCsvToList(String path) {

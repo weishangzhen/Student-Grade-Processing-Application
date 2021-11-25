@@ -18,6 +18,10 @@ import java.util.Vector;
  * @version 1.1
  */
 
+/*
+ * Display page of read student grade data
+ */
+
 public class SearchView extends JFrame {
 
     private static final String PATH = MainView.getText1().getText();

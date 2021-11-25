@@ -14,6 +14,10 @@ import java.awt.event.KeyEvent;
  * @version 1.0
  */
 
+/*
+ * Action Listening and Keyboard Listening for Login graphical page
+ */
+
 public class WelcomeHandler extends KeyAdapter implements ActionListener {
     private WelcomeView welcomeView;
 

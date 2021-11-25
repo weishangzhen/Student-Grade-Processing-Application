@@ -14,6 +14,10 @@ import java.io.File;
  * @version 1.0
  */
 
+/*
+ * Action Listening for CSV file reading page and software operating instructions page
+ */
+
 public class MainViewHandler extends Component implements ActionListener {
     JDialog dialog = null;
     private MainView mainView;

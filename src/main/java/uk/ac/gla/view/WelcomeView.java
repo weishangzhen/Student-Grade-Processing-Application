@@ -14,6 +14,10 @@ import java.util.Date;
  * @version 1.0
  */
 
+/*
+ * Login graphical page
+ */
+
 public class WelcomeView extends JFrame {
     JLabel applicationName = new JLabel("Welcome to the system!", JLabel.CENTER);
     JLabel right = new JLabel("© 2021 Shangzhen Wei All rights reserved.", JLabel.CENTER);
