@@ -1,7 +1,7 @@
 package uk.ac.gla.view;
 
-import uk.ac.gla.handler.SearchIdHandler;
-import uk.ac.gla.handler.SearchViewHandler;
+import uk.ac.gla.controller.SearchIdController;
+import uk.ac.gla.controller.SearchViewController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -22,14 +22,14 @@ public class SearchViewForID extends JDialog {
     JButton jButton = new JButton("Search");
     JButton jButton1 = new JButton("Exit");
 
-    SearchViewHandler searchViewHandler;
-    SearchIdHandler searchIdHandler;
+    SearchViewController searchViewController;
+    SearchIdController searchIdController;
 
     public SearchViewForID(SearchView searchView) {
         super(searchView, "Search By Student ID", true);
 
-        SearchViewHandler searchViewHandler = new SearchViewHandler(searchView);
-        SearchIdHandler searchIdHandler = new SearchIdHandler(this);
+        SearchViewController searchViewController = new SearchViewController(searchView);
+        SearchIdController searchIdController = new SearchIdController(this);
 
         Font font = new Font("Calibre", Font.PLAIN, 20);
 
@@ -38,8 +38,8 @@ public class SearchViewForID extends JDialog {
         jButton.setFont(font);
         jButton1.setFont(font);
 
-        jButton1.addActionListener(searchIdHandler);
-        jButton.addActionListener(searchIdHandler);
+        jButton1.addActionListener(searchIdController);
+        jButton.addActionListener(searchIdController);
 
         studentID.setPreferredSize(new Dimension(120, 50));
         jPanel.add(studentID);

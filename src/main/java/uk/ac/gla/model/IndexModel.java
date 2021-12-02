@@ -12,10 +12,6 @@ package uk.ac.gla.model;
 public class IndexModel {
     private int index;
 
-    public IndexModel(int index) {
-        this.index = index;
-    }
-
     public IndexModel() {
     }
 

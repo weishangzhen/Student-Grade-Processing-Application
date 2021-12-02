@@ -1,4 +1,4 @@
-package uk.ac.gla.handler;
+package uk.ac.gla.controller;
 
 import uk.ac.gla.model.ReadCsvModel;
 import uk.ac.gla.view.SearchView;
@@ -21,11 +21,11 @@ import java.util.Vector;
  * Action Listening for Search Student Page page
  */
 
-public class SearchNameHandler extends Component implements ActionListener {
+public class SearchNameController extends Component implements ActionListener {
     static int index;
     private SearchViewForName searchViewForName;
 
-    public SearchNameHandler(SearchViewForName searchViewForName) {
+    public SearchNameController(SearchViewForName searchViewForName) {
         this.searchViewForName = searchViewForName;
     }
 

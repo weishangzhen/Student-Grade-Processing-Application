@@ -1,6 +1,6 @@
 package uk.ac.gla.view;
 
-import uk.ac.gla.handler.WelcomeHandler;
+import uk.ac.gla.controller.WelcomeController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -32,12 +32,12 @@ public class WelcomeView extends JFrame {
     SystemTray systemTray;
     TrayIcon trayIcon;
 
-    WelcomeHandler welcomeHandler;
+    WelcomeController welcomeController;
 
     public WelcomeView() {
         super("Student Achievement Report Generation Application");
 
-        WelcomeHandler welcomeHandler = new WelcomeHandler(this);
+        WelcomeController welcomeController = new WelcomeController(this);
 
 
         Container contentPane = getContentPane();
@@ -54,10 +54,10 @@ public class WelcomeView extends JFrame {
         exitButton.setFont(buttonAndTimeFont);
 
         jPanel.add(systemTime);
-        exitButton.addActionListener(welcomeHandler);
+        exitButton.addActionListener(welcomeController);
         jPanel.add(exitButton);
-        enterButton.addActionListener(welcomeHandler);
-        enterButton.addKeyListener(welcomeHandler);
+        enterButton.addActionListener(welcomeController);
+        enterButton.addKeyListener(welcomeController);
         jPanel.add(enterButton);
 
 

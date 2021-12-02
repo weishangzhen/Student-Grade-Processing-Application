@@ -1,5 +1,6 @@
-package uk.ac.gla.handler;
+package uk.ac.gla.controller;
 
+import uk.ac.gla.model.ReadCsvModel;
 import uk.ac.gla.view.MainView;
 import uk.ac.gla.view.SearchView;
 
@@ -18,11 +19,12 @@ import java.io.File;
  * Action Listening for CSV file reading page and software operating instructions page
  */
 
-public class MainViewHandler extends Component implements ActionListener {
-    JDialog dialog = null;
-    private MainView mainView;
+public class MainViewController extends Component implements ActionListener {
 
-    public MainViewHandler(MainView mainView) {
+    private MainView mainView;
+    JDialog dialog = null;
+
+    public MainViewController(MainView mainView) {
         this.mainView = mainView;
     }
 
@@ -32,23 +34,34 @@ public class MainViewHandler extends Component implements ActionListener {
         String jButtonTest = jButton.getText();
 
         if ("Select".equals(jButtonTest)) {
-            MainView.getFileChooser().setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
-            int state = MainView.getFileChooser().showOpenDialog(null);
+            MainView.getjFileChooser().setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+            int state = MainView.getjFileChooser().showOpenDialog(null);
 
             if (state == 1) {
                 return;
             } else {
-                File file = MainView.getFileChooser().getSelectedFile();
+                File file = MainView.getjFileChooser().getSelectedFile();
                 MainView.getText1().setText(file.getAbsolutePath());
                 String gradePath = file.getAbsolutePath();
                 JOptionPane.showMessageDialog(this, gradePath, "The paths are as follows", JOptionPane.WARNING_MESSAGE);
             }
         } else if ("Submit".equals(jButtonTest)) {
-            if (MainView.getText1().getText().length() == 0) {
+            String path = MainView.getText1().getText();
+            String lastName = ReadCsvModel.readCsvToList(path).get(0).get(0);
+            String firstName = ReadCsvModel.readCsvToList(path).get(0).get(1);
+            String userName = ReadCsvModel.readCsvToList(path).get(0).get(2);
+            String studentID = ReadCsvModel.readCsvToList(path).get(0).get(3);
+            if (path.length() == 0) {
                 notCorrect();
-            } else {
-                showDialog();
+            }
+            if (lastName.equals("Last Name") && firstName.equals("First Name") && userName.equals("Username") && studentID.equals("Student ID")) {
+                // showDialog();
+                JOptionPane.showMessageDialog(this, "Successful import of grades!",
+                        "Information", JOptionPane.INFORMATION_MESSAGE);
                 new SearchView();
+            } else {
+                JOptionPane.showMessageDialog(this, "The data in the uploaded file is in the wrong format, please correct it before uploading!",
+                        "Information", JOptionPane.INFORMATION_MESSAGE);
             }
         } else if ("Reset".equals(jButtonTest)) {
             MainView.getText1().setText("");

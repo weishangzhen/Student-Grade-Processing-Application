@@ -1,7 +1,7 @@
 package uk.ac.gla.view;
 
-import uk.ac.gla.handler.SearchNameHandler;
-import uk.ac.gla.handler.SearchViewHandler;
+import uk.ac.gla.controller.SearchNameController;
+import uk.ac.gla.controller.SearchViewController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -24,15 +24,15 @@ public class SearchViewForName extends JDialog {
     JButton jButton = new JButton("Search");
     JButton jButton1 = new JButton("Exit");
 
-    SearchViewHandler searchViewHandler;
-    SearchNameHandler searchNameHandler;
+    SearchViewController searchViewController;
+    SearchNameController searchNameController;
 
 
     public SearchViewForName(SearchView searchView) {
         super(searchView, "Search By Student Name", true);
 
-        SearchViewHandler searchViewHandler = new SearchViewHandler(searchView);
-        SearchNameHandler searchNameHandler = new SearchNameHandler(this);
+        SearchViewController searchViewController = new SearchViewController(searchView);
+        SearchNameController searchNameController = new SearchNameController(this);
 
         Font font = new Font("Calibre", Font.PLAIN, 20);
 
@@ -41,8 +41,8 @@ public class SearchViewForName extends JDialog {
         jButton.setFont(font);
         jButton1.setFont(font);
 
-        jButton.addActionListener(searchNameHandler);
-        jButton1.addActionListener(searchNameHandler);
+        jButton.addActionListener(searchNameController);
+        jButton1.addActionListener(searchNameController);
 
         lastName.setPreferredSize(new Dimension(120, 50));
         jPanel.add(lastName);

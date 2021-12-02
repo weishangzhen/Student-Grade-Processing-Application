@@ -1,4 +1,4 @@
-package uk.ac.gla.handler;
+package uk.ac.gla.controller;
 
 import uk.ac.gla.view.MainView;
 import uk.ac.gla.view.WelcomeView;
@@ -18,10 +18,10 @@ import java.awt.event.KeyEvent;
  * Action Listening and Keyboard Listening for Login graphical page
  */
 
-public class WelcomeHandler extends KeyAdapter implements ActionListener {
+public class WelcomeController extends KeyAdapter implements ActionListener {
     private WelcomeView welcomeView;
 
-    public WelcomeHandler(WelcomeView welcomeView) {
+    public WelcomeController(WelcomeView welcomeView) {
         this.welcomeView = welcomeView;
     }
 

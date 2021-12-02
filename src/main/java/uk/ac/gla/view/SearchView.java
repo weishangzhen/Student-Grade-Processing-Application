@@ -1,6 +1,6 @@
 package uk.ac.gla.view;
 
-import uk.ac.gla.handler.SearchViewHandler;
+import uk.ac.gla.controller.SearchViewController;
 import uk.ac.gla.model.ReadCsvModel;
 import uk.ac.gla.util.ScreenDimensionUtil;
 
@@ -35,12 +35,12 @@ public class SearchView extends JFrame {
     JLabel jLabel = new JLabel("The currently selected students are");
     JLabel jLabelForCurrentStudent = new JLabel();
     ;
-    SearchViewHandler searchViewHandler;
+    SearchViewController searchViewController;
 
 
     public SearchView() {
         super("Student Grades Results");
-        SearchViewHandler searchViewHandler = new SearchViewHandler(this);
+        SearchViewController searchViewController = new SearchViewController(this);
         Font font = new Font("Calibre", Font.PLAIN, 20);
 
 
@@ -78,9 +78,9 @@ public class SearchView extends JFrame {
         jLabelForCurrentStudent.setFont(font);
         generateReport.setFont(font);
 
-        searchByID.addActionListener(searchViewHandler);
-        searchByName.addActionListener(searchViewHandler);
-        generateReport.addActionListener(searchViewHandler);
+        searchByID.addActionListener(searchViewController);
+        searchByName.addActionListener(searchViewController);
+        generateReport.addActionListener(searchViewController);
         northPanel.add(searchByName);
         northPanel.add(searchByID);
         northPanel.add(jLabel);

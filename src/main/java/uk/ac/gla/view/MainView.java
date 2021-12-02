@@ -1,6 +1,6 @@
 package uk.ac.gla.view;
 
-import uk.ac.gla.handler.MainViewHandler;
+import uk.ac.gla.controller.MainViewController;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
@@ -36,12 +36,12 @@ public class MainView extends JFrame {
     JButton reset = new JButton("Reset");
     JButton fileChooseButton = new JButton("Select");
     JButton checkButton = new JButton("Submit");
-    MainViewHandler mainViewHandler;
+    MainViewController mainViewController;
 
 
     public MainView() {
         super("Student Achievement Report Generation Application");
-        MainViewHandler mainViewHandler = new MainViewHandler(this);
+        MainViewController mainViewController = new MainViewController(this);
         Font mainViewBaseFont = new Font("Calibre", Font.PLAIN, 20);
         Font font = new Font("Calibre", Font.PLAIN, 16);
 
@@ -69,9 +69,9 @@ public class MainView extends JFrame {
         checkButton.setFont(mainViewBaseFont);
         checkButton.setBounds(500, 170, 100, 40);
 
-        fileChooseButton.addActionListener(mainViewHandler);
-        checkButton.addActionListener(mainViewHandler);
-        reset.addActionListener(mainViewHandler);
+        fileChooseButton.addActionListener(mainViewController);
+        checkButton.addActionListener(mainViewController);
+        reset.addActionListener(mainViewController);
 
         containerForDirectory.add(label1);
         containerForDirectory.add(text1);
@@ -125,19 +125,12 @@ public class MainView extends JFrame {
 
     }
 
-    public static JFileChooser getFileChooser() {
+    public static JFileChooser getjFileChooser() {
         return jFileChooser;
-    }
-
-    public static void setjFileChooser(JFileChooser jFileChooser) {
-        MainView.jFileChooser = jFileChooser;
     }
 
     public static JTextField getText1() {
         return text1;
     }
 
-    public void setText1(String absolutePath) {
-        absolutePath = String.valueOf(text1);
-    }
 }
