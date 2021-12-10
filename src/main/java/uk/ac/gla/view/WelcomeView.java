@@ -35,7 +35,7 @@ public class WelcomeView extends JFrame {
     WelcomeController welcomeController;
 
     public WelcomeView() {
-        super("Student Achievement Report Generation Application");
+        super("MyGrade - A Student Grade Processing Application");
 
         WelcomeController welcomeController = new WelcomeController(this);
 

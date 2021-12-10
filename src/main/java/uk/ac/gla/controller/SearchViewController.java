@@ -13,6 +13,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
+import java.util.Vector;
 
 /**
  * @author Shangzhen Wei
@@ -45,20 +46,36 @@ public class SearchViewController extends Component implements ActionListener {
             new SearchViewForID(searchView);
         }
 
-        if ("Generate A Report".equals(jButtonTest)) {
-            GradeConversionModel.gradeAfterConversion.clear();
-            GradeConversionModel.toPoints.clear();
-            GradeConversionModel.assessmentsCredits.clear();
+        if ("Generate Reports".equals(jButtonTest)) {
+            if (SearchView.ids.isEmpty()) {
+                JOptionPane.showMessageDialog(this, " No students have been selected, please search first. ",
+                        "Information", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                for (String s : SearchView.ids) {
+                    int i = 2;
+                    for (Vector<String> strings : SearchView.data) {
+                        System.out.println(strings.get(3));
+                        if (strings.get(3).equals(s)) {
+                            SearchIdController.indexModel.setIndex(i);
+                            GradeConversionModel.gradeAfterConversion.clear();
+                            GradeConversionModel.toPoints.clear();
+                            GradeConversionModel.assessmentsCredits.clear();
 
-            String path = MainView.getText1().getText();
-            List<List<String>> lists = ReadCsvModel.readCsvToList(path);
-            System.out.println(SearchIdController.indexModel.getIndex());
+                            String path = MainView.getText1().getText();
+                            List<List<String>> lists = ReadCsvModel.readCsvToList(path);
+                            System.out.println(SearchIdController.indexModel.getIndex());
 
-            GradesReportUtil gradesReport = new GradesReportUtil();
-            try {
-                gradesReport.generatePdf(gradesReport.document);
-            } catch (Exception s) {
-                s.printStackTrace();
+                            GradesReportUtil gradesReport = new GradesReportUtil();
+                            try {
+                                gradesReport.generatePdf(gradesReport.document);
+                            } catch (Exception e1) {
+                                e1.printStackTrace();
+                            }
+                        }
+                        i++;
+                    }
+
+                }
             }
         }
     }

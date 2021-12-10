@@ -8,8 +8,8 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
-import javax.swing.table.TableColumn;
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
@@ -26,20 +26,22 @@ public class SearchView extends JFrame {
 
     private static final String PATH = MainView.getText1().getText();
     public static JLabel jLabelName = new JLabel();
-    public static DefaultTableModel tableModel1 = new DefaultTableModel();
-    public static Vector<String> columns = new Vector<>();
-    JPanel northPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 50, 10));
     JButton searchByName = new JButton("Search By Student Name");
     JButton searchByID = new JButton("Search By Student ID");
-    JButton generateReport = new JButton("Generate A Report");
+    public static DefaultTableModel tableModel1 = new DefaultTableModel();
     JLabel jLabel = new JLabel("The currently selected students are");
+    public static JTable jTable = null;
     JLabel jLabelForCurrentStudent = new JLabel();
-    ;
+    public static Vector<Vector<String>> data = new Vector<>();
+    public static List<String> ids = new ArrayList<>();
+    public static Vector<String> columns = new Vector<>();
+    JPanel northPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 50, 10));
+    JButton generateReport = new JButton("Generate Reports");
     SearchViewController searchViewController;
 
 
     public SearchView() {
-        super("Student Grades Results");
+        super("MyGrade - A Student Grade Processing Application");
         SearchViewController searchViewController = new SearchViewController(this);
         Font font = new Font("Calibre", Font.PLAIN, 20);
 
@@ -50,7 +52,6 @@ public class SearchView extends JFrame {
             System.out.println(columns);
         }
 
-        Vector<Vector<String>> data = new Vector<>();
         for (int j = 0; j < lists.size() - 2; j++) {
             Vector<String> vector = new Vector<>(lists.get(j + 2));
             System.out.println(vector);
@@ -58,7 +59,7 @@ public class SearchView extends JFrame {
             System.out.println(data);
         }
 
-        tableModel1.setDataVector(data, columns);
+        tableModel1.setDataVector(new Vector<>(), columns);
 
         JTable jTable = new JTable(tableModel1) {
             @Override
@@ -101,12 +102,6 @@ public class SearchView extends JFrame {
         jTable.getSelectionModel().setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 
         StudentCellRender studentCellRender = new StudentCellRender();
-
-        for (int i = 0; i < columns.size(); i++) {
-            TableColumn tableColumn = jTable.getColumn(columns.get(i));
-            tableColumn.setCellRenderer(studentCellRender);
-        }
-
 
         setBounds(ScreenDimensionUtil.getBounds());
         setExtendedState(JFrame.MAXIMIZED_BOTH);

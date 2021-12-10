@@ -54,7 +54,7 @@ public class MainViewController extends Component implements ActionListener {
             if (path.length() == 0) {
                 notCorrect();
             }
-            if (lastName.equals("Last Name") && firstName.equals("First Name") && userName.equals("Username") && studentID.equals("Student ID")) {
+            if (firstName.equals("First Name") && userName.equals("Username") && studentID.equals("Student ID")) {
                 // showDialog();
                 JOptionPane.showMessageDialog(this, "Successful import of grades!",
                         "Information", JOptionPane.INFORMATION_MESSAGE);

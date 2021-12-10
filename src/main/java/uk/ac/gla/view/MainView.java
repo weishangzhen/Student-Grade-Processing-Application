@@ -40,7 +40,7 @@ public class MainView extends JFrame {
 
 
     public MainView() {
-        super("Student Achievement Report Generation Application");
+        super("MyGrade - A Student Grade Processing Application");
         MainViewController mainViewController = new MainViewController(this);
         Font mainViewBaseFont = new Font("Calibre", Font.PLAIN, 20);
         Font font = new Font("Calibre", Font.PLAIN, 16);

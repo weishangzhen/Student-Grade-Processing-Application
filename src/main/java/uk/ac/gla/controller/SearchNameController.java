@@ -1,6 +1,7 @@
 package uk.ac.gla.controller;
 
 import uk.ac.gla.model.ReadCsvModel;
+import uk.ac.gla.view.MainView;
 import uk.ac.gla.view.SearchView;
 import uk.ac.gla.view.SearchViewForName;
 
@@ -43,28 +44,26 @@ public class SearchNameController extends Component implements ActionListener {
             String firstName = SearchViewForName.getFirstNameTextField().getText();
             System.out.println(lastName + firstName);
             Vector<Vector<String>> data = new Vector<>();
-
-            if ((lastName == null || lastName.isEmpty()) && (firstName == null || firstName.isEmpty())) {
-                java.util.List<java.util.List<String>> lists = ReadCsvModel.readCsvToList(SearchView.getPath());
-                for (int j = 0; j < lists.size() - 2; j++) {
-                    Vector<String> vector = new Vector<>(lists.get(j + 2));
-                    data.addElement(vector);
-                }
-                SearchView.tableModel1.setDataVector(data, SearchView.columns);
+            if ((lastName == null || firstName == null || searchUsedByNameCheck(lastName, firstName, MainView.getText1().getText()) == -1)) {
+                JOptionPane.showMessageDialog(this, "Input is empty or student does not exist, please re-enter!",
+                        "Information", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 List<List<String>> res = searchUsedByName(lastName, firstName, SearchView.getPath());
-
                 if (res.isEmpty()) {
                     JOptionPane.showMessageDialog(this, "The student does not exist, please re-enter!",
+                            "Information", JOptionPane.INFORMATION_MESSAGE);
+                } else if (res.size() == 2) {
+                    JOptionPane.showMessageDialog(this, "The student has existed in the table!",
                             "Information", JOptionPane.INFORMATION_MESSAGE);
                 } else {
                     for (int j = 0; j < res.size(); j++) {
                         Vector<String> vector = new Vector<>(res.get(j));
                         data.addElement(vector);
                     }
-                    SearchView.tableModel1.setDataVector(data, SearchView.columns);
+                    SearchView.tableModel1.addRow(data.get(0));
                     JOptionPane.showMessageDialog(this, lastName.toUpperCase() + " " + firstName.toUpperCase() + " has been found! ",
                             "Information", JOptionPane.INFORMATION_MESSAGE);
+
                 }
             }
         } else if ("Exit".equals(jButtonTest)) {
@@ -76,11 +75,32 @@ public class SearchNameController extends Component implements ActionListener {
     public List<List<String>> searchUsedByName(String lastName, String firstName, String path) {
         List<List<String>> res = new ArrayList<>();
         List<List<String>> lists = ReadCsvModel.readCsvToList(path);
-        for (int i = 0; i < lists.size(); i++) {
-            if (lastName.equalsIgnoreCase(lists.get(i).get(0)) && firstName.equalsIgnoreCase(lists.get(i).get(1))) {
-                res.add(lists.get(i));
+        for (List<String> list : lists) {
+            if (lastName.equalsIgnoreCase(list.get(0)) && firstName.equalsIgnoreCase(list.get(1))) {
+                res.add(list);
             }
         }
+        boolean isFind = false;
+        for (String s : SearchView.ids) {
+            if (s.equals(res.get(0).get(3))) {
+                isFind = true;
+            }
+        }
+        if (isFind) {
+            res.add(lists.get(0));
+        } else {
+            SearchView.ids.add(res.get(0).get(3));
+        }
         return res;
+    }
+
+    public int searchUsedByNameCheck(String lastName, String firstName, String path) {
+        List<List<String>> lists = ReadCsvModel.readCsvToList(path);
+        for (int i = 0; i < lists.size(); i++) {
+            if (lastName.equalsIgnoreCase(lists.get(i).get(0)) && firstName.equalsIgnoreCase(lists.get(i).get(1))) {
+                return i;
+            }
+        }
+        return -1;
     }
 }
