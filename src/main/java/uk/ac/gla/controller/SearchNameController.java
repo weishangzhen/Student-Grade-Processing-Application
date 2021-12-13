@@ -25,6 +25,7 @@ import java.util.Vector;
 public class SearchNameController extends Component implements ActionListener {
     static int index;
     private SearchViewForName searchViewForName;
+    JDialog dialog = null;
 
     public SearchNameController(SearchViewForName searchViewForName) {
         this.searchViewForName = searchViewForName;
@@ -53,7 +54,7 @@ public class SearchNameController extends Component implements ActionListener {
                     JOptionPane.showMessageDialog(this, "The student does not exist, please re-enter!",
                             "Information", JOptionPane.INFORMATION_MESSAGE);
                 } else if (res.size() == 2) {
-                    JOptionPane.showMessageDialog(this, "The student has existed in the table!",
+                    JOptionPane.showMessageDialog(this, "This student has been chosen!",
                             "Information", JOptionPane.INFORMATION_MESSAGE);
                 } else {
                     for (int j = 0; j < res.size(); j++) {
@@ -61,9 +62,9 @@ public class SearchNameController extends Component implements ActionListener {
                         data.addElement(vector);
                     }
                     SearchView.tableModel1.addRow(data.get(0));
+                    studentSuccessDialog();
                     JOptionPane.showMessageDialog(this, lastName.toUpperCase() + " " + firstName.toUpperCase() + " has been found! ",
                             "Information", JOptionPane.INFORMATION_MESSAGE);
-
                 }
             }
         } else if ("Exit".equals(jButtonTest)) {
@@ -102,5 +103,22 @@ public class SearchNameController extends Component implements ActionListener {
             }
         }
         return -1;
+    }
+
+    private void studentSuccessDialog() {
+        JPanel jPanel = new JPanel();
+        JLabel information = new JLabel("Search ends");
+        Font font = new Font("Calibre", Font.PLAIN, 18);
+        dialog = new JDialog(this.searchViewForName, true);
+        dialog.setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
+        dialog.setSize(300, 180);
+        dialog.setTitle("Information");
+        information.setFont(font);
+        dialog.add(jPanel);
+        jPanel.add(information);
+        information.setBounds(10, 20, 40, 35);
+        dialog.setLocationRelativeTo(this);
+
+        dialog.setVisible(true);
     }
 }

@@ -29,7 +29,7 @@ public class SearchView extends JFrame {
     JButton searchByName = new JButton("Search By Student Name");
     JButton searchByID = new JButton("Search By Student ID");
     public static DefaultTableModel tableModel1 = new DefaultTableModel();
-    JLabel jLabel = new JLabel("The currently selected students are");
+    JLabel jLabel = new JLabel("The table below shows the selected students");
     public static JTable jTable = null;
     JLabel jLabelForCurrentStudent = new JLabel();
     public static Vector<Vector<String>> data = new Vector<>();

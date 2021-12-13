@@ -55,7 +55,6 @@ public class MainViewController extends Component implements ActionListener {
                 notCorrect();
             }
             if (firstName.equals("First Name") && userName.equals("Username") && studentID.equals("Student ID")) {
-                // showDialog();
                 JOptionPane.showMessageDialog(this, "Successful import of grades!",
                         "Information", JOptionPane.INFORMATION_MESSAGE);
                 new SearchView();
@@ -67,23 +66,6 @@ public class MainViewController extends Component implements ActionListener {
             MainView.getText1().setText("");
         }
 
-    }
-
-    private void showDialog() {
-        JPanel jPanel = new JPanel();
-        JLabel information = new JLabel("Successful import of grades!");
-        Font font = new Font("Calibre", Font.PLAIN, 18);
-        dialog = new JDialog(this.mainView, true);
-        dialog.setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
-        dialog.setSize(300, 180);
-        dialog.setTitle("Information");
-        information.setFont(font);
-        dialog.add(jPanel);
-        jPanel.add(information);
-        information.setBounds(10, 20, 40, 35);
-        dialog.setLocationRelativeTo(this);
-
-        dialog.setVisible(true);
     }
 
     private void notCorrect() {
